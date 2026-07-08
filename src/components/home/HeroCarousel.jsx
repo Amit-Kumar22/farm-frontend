@@ -1,9 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Sprout } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import clsx from "clsx";
-import CoverImage from "../ui/CoverImage";
+import { resolveImageUrl } from "@/lib/imageUrl";
 import Button from "../ui/Button";
 import Container from "../ui/Container";
 
@@ -26,30 +26,34 @@ export default function HeroCarousel({ slides }) {
   const slide = slides[index];
 
   return (
-    <section className="relative overflow-hidden">
-      {slides.map((s, i) => (
-        <CoverImage
-          key={s._id || i}
-          src={s.backgroundImage}
-          icon={Sprout}
-          priority={i === 0}
-          className={clsx(
-            "absolute inset-0 h-full w-full transition-opacity duration-700 ease-in-out",
-            i === index ? "opacity-100" : "opacity-0"
-          )}
-        />
-      ))}
-      <div className="absolute inset-0 bg-forest-deep/70" />
+    <section className="relative overflow-hidden bg-cream-dark">
+      {slides.map((s, i) => {
+        const bgImage = resolveImageUrl(s.backgroundImage);
+        return (
+          <div
+            key={s._id || i}
+            className={clsx(
+              "absolute inset-0 h-full w-full bg-center bg-no-repeat transition-opacity duration-700 ease-in-out",
+              i === index ? "opacity-100" : "opacity-0"
+            )}
+            style={{
+              backgroundImage: bgImage ? `url(${bgImage})` : 'none',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center center',
+            }}
+          />
+        );
+      })}
 
       <Container className="relative flex min-h-[560px] flex-col justify-center pb-20 pt-32">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-gold">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-gold drop-shadow-lg">
           Welcome to MainFarm
         </p>
-        <h1 className="max-w-2xl text-4xl font-extrabold leading-tight text-cream sm:text-5xl">
+        <h1 className="max-w-2xl text-4xl font-extrabold leading-tight text-cream drop-shadow-lg sm:text-5xl">
           {slide.title}
         </h1>
         {slide.subtitle && (
-          <p className="mt-5 max-w-xl text-base text-cream/80">{slide.subtitle}</p>
+          <p className="mt-5 max-w-xl text-base text-cream/90 drop-shadow-lg">{slide.subtitle}</p>
         )}
         <div className="mt-8">
           <Button href={slide.ctaLink || "/businesses"}>{slide.ctaText || "Contact Us"}</Button>

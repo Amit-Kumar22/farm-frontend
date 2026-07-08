@@ -8,8 +8,9 @@ import FormField from "../fields/FormField";
 import { Input } from "@/components/ui/Input";
 import { Checkbox } from "../fields/Checkbox";
 import ImageUploadField from "../fields/ImageUploadField";
-import Button from "@/components/ui/Button";
+import FormActions from "../FormActions";
 import { ApiError } from "@/lib/apiClient";
+import { confirmNavigation } from "@/hooks/useUnsavedChangesWarning";
 
 const schema = z.object({
   caption: z.string().optional(),
@@ -18,7 +19,7 @@ const schema = z.object({
   order: z.coerce.number().optional(),
 });
 
-export default function GalleryForm({ defaultValues, onSubmit }) {
+export default function GalleryForm({ defaultValues, onSubmit, onCancel }) {
   const [serverError, setServerError] = useState("");
   const [imageError, setImageError] = useState("");
   const [image, setImage] = useState(defaultValues?.image || "");
@@ -26,7 +27,7 @@ export default function GalleryForm({ defaultValues, onSubmit }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -49,6 +50,10 @@ export default function GalleryForm({ defaultValues, onSubmit }) {
     } catch (err) {
       setServerError(err instanceof ApiError ? err.message : "Something went wrong");
     }
+  }
+
+  function handleCancel() {
+    confirmNavigation(isDirty, onCancel);
   }
 
   return (
@@ -77,9 +82,11 @@ export default function GalleryForm({ defaultValues, onSubmit }) {
         </FormField>
       </div>
 
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Saving..." : "Save Image"}
-      </Button>
+      <FormActions
+        onCancel={handleCancel}
+        isSubmitting={isSubmitting}
+        submitLabel="Save Image"
+      />
     </form>
   );
 }

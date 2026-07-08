@@ -1,7 +1,7 @@
 import { Sprout, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
-import CoverImage from "../ui/CoverImage";
 import { siteSettingsApi } from "@/lib/api/siteSettings";
 
 const fallbackStats = [
@@ -16,7 +16,15 @@ export default async function About() {
   return (
     <section className="py-20">
       <Container className="grid items-center gap-12 lg:grid-cols-2">
-        <CoverImage icon={Sprout} className="h-80 w-full rounded-2xl" />
+        <div className="relative h-80 w-full overflow-hidden rounded-2xl bg-gradient-to-br from-forest-light to-forest-deep">
+          <Image
+            src="/about.png"
+            alt="About MainFarm"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
 
         <div>
           <SectionHeading

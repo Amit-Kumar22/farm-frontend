@@ -8,8 +8,9 @@ import FormField from "../fields/FormField";
 import { Input, Textarea } from "@/components/ui/Input";
 import { Checkbox } from "../fields/Checkbox";
 import ImageUploadField from "../fields/ImageUploadField";
-import Button from "@/components/ui/Button";
+import FormActions from "../FormActions";
 import { ApiError } from "@/lib/apiClient";
+import { confirmNavigation } from "@/hooks/useUnsavedChangesWarning";
 
 const schema = z.object({
   title: z.string().min(2, "Title is required"),
@@ -20,14 +21,14 @@ const schema = z.object({
   order: z.coerce.number().optional(),
 });
 
-export default function HeroSlideForm({ defaultValues, onSubmit }) {
+export default function HeroSlideForm({ defaultValues, onSubmit, onCancel }) {
   const [serverError, setServerError] = useState("");
   const [backgroundImage, setBackgroundImage] = useState(defaultValues?.backgroundImage || "");
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -47,6 +48,10 @@ export default function HeroSlideForm({ defaultValues, onSubmit }) {
     } catch (err) {
       setServerError(err instanceof ApiError ? err.message : "Something went wrong");
     }
+  }
+
+  function handleCancel() {
+    confirmNavigation(isDirty, onCancel);
   }
 
   return (
@@ -86,9 +91,11 @@ export default function HeroSlideForm({ defaultValues, onSubmit }) {
         </FormField>
       </div>
 
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Saving..." : "Save Slide"}
-      </Button>
+      <FormActions
+        onCancel={handleCancel}
+        isSubmitting={isSubmitting}
+        submitLabel="Save Slide"
+      />
     </form>
   );
 }

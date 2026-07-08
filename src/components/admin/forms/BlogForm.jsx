@@ -8,8 +8,9 @@ import FormField from "../fields/FormField";
 import { Input, Textarea } from "@/components/ui/Input";
 import { Checkbox } from "../fields/Checkbox";
 import ImageUploadField from "../fields/ImageUploadField";
-import Button from "@/components/ui/Button";
+import FormActions from "../FormActions";
 import { ApiError } from "@/lib/apiClient";
+import { confirmNavigation } from "@/hooks/useUnsavedChangesWarning";
 
 const schema = z.object({
   title: z.string().min(2, "Title is required"),
@@ -20,14 +21,14 @@ const schema = z.object({
   isPublished: z.boolean().optional(),
 });
 
-export default function BlogForm({ defaultValues, onSubmit }) {
+export default function BlogForm({ defaultValues, onSubmit, onCancel }) {
   const [serverError, setServerError] = useState("");
   const [coverImage, setCoverImage] = useState(defaultValues?.coverImage || "");
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -47,6 +48,10 @@ export default function BlogForm({ defaultValues, onSubmit }) {
     } catch (err) {
       setServerError(err instanceof ApiError ? err.message : "Something went wrong");
     }
+  }
+
+  function handleCancel() {
+    confirmNavigation(isDirty, onCancel);
   }
 
   return (
@@ -80,9 +85,11 @@ export default function BlogForm({ defaultValues, onSubmit }) {
 
       <Checkbox label="Published (visible on site)" {...register("isPublished")} />
 
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Saving..." : "Save Post"}
-      </Button>
+      <FormActions
+        onCancel={handleCancel}
+        isSubmitting={isSubmitting}
+        submitLabel="Save Post"
+      />
     </form>
   );
 }

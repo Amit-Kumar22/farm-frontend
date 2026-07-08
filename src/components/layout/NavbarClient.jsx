@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { Sprout, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import config from "@/config";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
@@ -39,15 +40,16 @@ export default function NavbarClient({ siteName, phone, isLoggedIn }) {
       <Container className="relative flex h-16 items-center justify-between">
         <Link
           href="/"
-          className={clsx(
-            "flex items-center gap-2 text-xl font-extrabold transition-colors",
-            transparent ? "text-cream" : "text-forest-deep"
-          )}
+          className="relative h-14 w-auto flex items-center"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold text-forest-deep">
-            <Sprout size={18} strokeWidth={2.5} />
-          </span>
-          {siteName}
+          <Image
+            src="/logo.png"
+            alt="MainFarm Logo"
+            width={500}
+            height={150}
+            className="h-20 w-auto object-contain"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

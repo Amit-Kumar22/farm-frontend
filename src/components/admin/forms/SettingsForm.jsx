@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, RotateCcw } from "lucide-react";
 import FormField from "../fields/FormField";
 import { Input, Textarea } from "@/components/ui/Input";
 import ImageUploadField from "../fields/ImageUploadField";
 import Button from "@/components/ui/Button";
 import { ApiError } from "@/lib/apiClient";
+import { confirmNavigation } from "@/hooks/useUnsavedChangesWarning";
 
 const schema = z.object({
   siteName: z.string().min(1, "Site name is required"),
@@ -28,6 +29,7 @@ export default function SettingsForm({ defaultValues, onSubmit }) {
   const [serverError, setServerError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [logo, setLogo] = useState(defaultValues?.logo || "");
+  const [aboutImage, setAboutImage] = useState(defaultValues?.aboutImage || "");
   const [stats, setStats] = useState(defaultValues?.stats?.length ? defaultValues.stats : []);
   const [timeline, setTimeline] = useState(
     defaultValues?.timeline?.length ? defaultValues.timeline : []
@@ -36,7 +38,8 @@ export default function SettingsForm({ defaultValues, onSubmit }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    reset,
+    formState: { errors, isSubmitting, isDirty },
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -65,6 +68,7 @@ export default function SettingsForm({ defaultValues, onSubmit }) {
         address: values.address,
         workingHours: values.workingHours,
         logo,
+        aboutImage,
         socialLinks: {
           facebook: values.facebook,
           twitter: values.twitter,
@@ -78,6 +82,32 @@ export default function SettingsForm({ defaultValues, onSubmit }) {
     } catch (err) {
       setServerError(err instanceof ApiError ? err.message : "Something went wrong");
     }
+  }
+
+  function handleReset() {
+    if (isDirty) {
+      const confirmed = window.confirm(
+        "Are you sure you want to reset? All unsaved changes will be lost."
+      );
+      if (!confirmed) return;
+    }
+    
+    reset({
+      siteName: defaultValues?.siteName || "MainFarm",
+      tagline: defaultValues?.tagline || "",
+      phone: defaultValues?.phone || "",
+      email: defaultValues?.email || "",
+      address: defaultValues?.address || "",
+      workingHours: defaultValues?.workingHours || "",
+      facebook: defaultValues?.socialLinks?.facebook || "",
+      twitter: defaultValues?.socialLinks?.twitter || "",
+      instagram: defaultValues?.socialLinks?.instagram || "",
+      linkedin: defaultValues?.socialLinks?.linkedin || "",
+    });
+    setLogo(defaultValues?.logo || "");
+    setAboutImage(defaultValues?.aboutImage || "");
+    setStats(defaultValues?.stats?.length ? defaultValues.stats : []);
+    setTimeline(defaultValues?.timeline?.length ? defaultValues.timeline : []);
   }
 
   return (
@@ -99,7 +129,15 @@ export default function SettingsForm({ defaultValues, onSubmit }) {
             <Input {...register("tagline")} />
           </FormField>
         </div>
-        <ImageUploadField label="Logo" type="settings" value={logo} onChange={setLogo} />
+        <div className="grid gap-5 sm:grid-cols-2">
+          <ImageUploadField label="Logo" type="settings" value={logo} onChange={setLogo} />
+          <ImageUploadField 
+            label="About Section Image" 
+            type="settings" 
+            value={aboutImage} 
+            onChange={setAboutImage} 
+          />
+        </div>
       </section>
 
       <section className="space-y-5">
@@ -228,9 +266,21 @@ export default function SettingsForm({ defaultValues, onSubmit }) {
         ))}
       </section>
 
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Saving..." : "Save Settings"}
-      </Button>
+      <div className="flex flex-wrap items-center gap-3">
+        <Button
+          type="button"
+          variant="outline"
+          onClick={handleReset}
+          disabled={isSubmitting}
+          className="min-w-[120px]"
+        >
+          <RotateCcw size={16} />
+          <span>Reset</span>
+        </Button>
+        <Button type="submit" disabled={isSubmitting} className="min-w-[120px]">
+          {isSubmitting ? "Saving..." : "Save Settings"}
+        </Button>
+      </div>
     </form>
   );
 }

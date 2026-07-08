@@ -2,7 +2,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import { resolveImageUrl } from "@/lib/imageUrl";
 
-export default function CoverImage({ src, alt, icon: Icon, className, priority = false }) {
+export default function CoverImage({ src, alt, icon: Icon, className, priority = false, objectFit = "cover" }) {
   const url = resolveImageUrl(src);
 
   if (!url) {
@@ -31,7 +31,7 @@ export default function CoverImage({ src, alt, icon: Icon, className, priority =
           alt={alt || ""}
           fill
           priority={priority}
-          className="object-cover"
+          className={objectFit === "cover" ? "object-cover" : "object-contain"}
           sizes="(max-width: 768px) 100vw, 33vw"
         />
       </div>
