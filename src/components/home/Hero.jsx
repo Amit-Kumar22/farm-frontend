@@ -17,7 +17,12 @@ export default async function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <CoverImage src={slide?.backgroundImage} icon={Sprout} className="absolute inset-0 h-full w-full" />
+      <CoverImage
+        src={slide?.backgroundImage}
+        icon={Sprout}
+        priority
+        className="absolute inset-0 h-full w-full"
+      />
       <div className="absolute inset-0 bg-forest-deep/70" />
 
       <Container className="relative flex min-h-[480px] flex-col justify-center py-20">

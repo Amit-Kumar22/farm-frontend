@@ -44,7 +44,12 @@ export default async function BlogDetailPage({ params }) {
           By {post.author} · {date}
         </p>
 
-        <CoverImage src={post.coverImage} icon={Newspaper} className="mt-8 h-72 w-full rounded-2xl" />
+        <CoverImage
+          src={post.coverImage}
+          icon={Newspaper}
+          priority
+          className="mt-8 h-72 w-full rounded-2xl"
+        />
 
         <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-ink">
           {post.content}

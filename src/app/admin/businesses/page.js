@@ -1,6 +1,7 @@
 "use client";
 
 import ResourceListPage from "@/components/admin/ResourceListPage";
+import TableThumbnail from "@/components/admin/TableThumbnail";
 import { businessesApi } from "@/lib/api/businesses";
 
 export default function AdminBusinessesPage() {
@@ -13,6 +14,11 @@ export default function AdminBusinessesPage() {
       createHref="/admin/businesses/new"
       editHref={(id) => `/admin/businesses/${id}/edit`}
       columns={[
+        {
+          key: "image",
+          label: "Image",
+          render: (i) => <TableThumbnail src={i.coverImage} alt={i.title} />,
+        },
         { key: "title", label: "Title" },
         { key: "isFeatured", label: "Featured", render: (i) => (i.isFeatured ? "Yes" : "No") },
         { key: "isActive", label: "Active", render: (i) => (i.isActive ? "Yes" : "No") },

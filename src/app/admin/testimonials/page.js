@@ -1,6 +1,7 @@
 "use client";
 
 import ResourceListPage from "@/components/admin/ResourceListPage";
+import TableThumbnail from "@/components/admin/TableThumbnail";
 import { testimonialsApi } from "@/lib/api/testimonials";
 
 export default function AdminTestimonialsPage() {
@@ -13,6 +14,11 @@ export default function AdminTestimonialsPage() {
       createHref="/admin/testimonials/new"
       editHref={(id) => `/admin/testimonials/${id}/edit`}
       columns={[
+        {
+          key: "avatar",
+          label: "Avatar",
+          render: (i) => <TableThumbnail src={i.avatar} alt={i.name} rounded="rounded-full" />,
+        },
         { key: "name", label: "Name" },
         { key: "designation", label: "Designation" },
         { key: "rating", label: "Rating" },

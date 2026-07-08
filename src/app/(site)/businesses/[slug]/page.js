@@ -35,6 +35,7 @@ export default async function BusinessDetailPage({ params }) {
         <CoverImage
           src={business.coverImage}
           icon={Icon}
+          priority
           className="absolute inset-0 h-full w-full"
         />
         <div className="absolute inset-0 bg-forest-deep/70" />
