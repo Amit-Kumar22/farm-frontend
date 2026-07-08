@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Newspaper } from "lucide-react";
-import PageHeader from "@/components/layout/PageHeader";
 import Container from "@/components/ui/Container";
 import CoverImage from "@/components/ui/CoverImage";
 import { blogApi } from "@/lib/api/blog";
@@ -13,12 +12,21 @@ export default async function BlogPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Our Blog"
-        title="Latest Posts & Articles"
-        subtitle="News, guides and updates from across our farms."
-      />
       <section className="py-16">
+        <Container className="max-w-2xl text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-dark">
+            Our Blog
+          </p>
+          <h1 className="text-3xl font-extrabold text-forest-deep sm:text-4xl">
+            Latest Posts &amp; Articles
+          </h1>
+          <p className="mt-4 text-sm leading-relaxed text-muted">
+            News, guides and updates from across our farms.
+          </p>
+        </Container>
+      </section>
+
+      <section className="pb-20">
         <Container>
           {posts.length === 0 ? (
             <p className="text-center text-sm text-muted">No posts published yet.</p>
@@ -28,10 +36,10 @@ export default async function BlogPage() {
                 <Link
                   key={post._id}
                   href={`/blog/${post.slug}`}
-                  className="group overflow-hidden rounded-2xl bg-white shadow-sm"
+                  className="group overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <CoverImage src={post.coverImage} icon={Newspaper} className="h-44 w-full" />
-                  <div className="p-5">
+                  <CoverImage src={post.coverImage} icon={Newspaper} className="h-48 w-full" />
+                  <div className="p-6">
                     <p className="text-xs font-semibold uppercase tracking-wide text-gold-dark">
                       {post.category}
                     </p>

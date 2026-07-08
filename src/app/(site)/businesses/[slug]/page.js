@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import Container from "@/components/ui/Container";
 import CoverImage from "@/components/ui/CoverImage";
-import Button from "@/components/ui/Button";
 import { businessesApi } from "@/lib/api/businesses";
 import { getBusinessIcon } from "@/lib/businessIcon";
 import { ApiError } from "@/lib/apiClient";
@@ -30,44 +31,39 @@ export default async function BusinessDetailPage({ params }) {
   const Icon = getBusinessIcon(business.title);
 
   return (
-    <>
-      <section className="relative overflow-hidden">
+    <article className="py-16">
+      <Container className="max-w-3xl">
+        <Link
+          href="/businesses"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-gold-dark hover:text-forest-deep"
+        >
+          <ArrowLeft size={14} /> All Businesses
+        </Link>
+
+        <h1 className="mt-4 text-3xl font-extrabold text-forest-deep sm:text-4xl">
+          {business.title}
+        </h1>
+        <p className="mt-3 text-base text-muted">{business.shortDescription}</p>
+
         <CoverImage
           src={business.coverImage}
           icon={Icon}
           priority
-          className="absolute inset-0 h-full w-full"
+          className="mt-8 h-80 w-full rounded-2xl"
         />
-        <div className="absolute inset-0 bg-forest-deep/70" />
-        <Container className="relative flex min-h-[320px] flex-col justify-center py-16">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-gold">
-            Our Business
-          </p>
-          <h1 className="text-3xl font-extrabold text-cream sm:text-4xl">{business.title}</h1>
-        </Container>
-      </section>
 
-      <section className="py-16">
-        <Container className="max-w-3xl">
-          <p className="whitespace-pre-line text-base leading-relaxed text-muted">
-            {business.description}
-          </p>
+        <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-ink">
+          {business.description}
+        </div>
 
-          {business.gallery?.length > 0 && (
-            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
-              {business.gallery.map((img, i) => (
-                <CoverImage key={i} src={img} className="h-40 w-full rounded-xl" />
-              ))}
-            </div>
-          )}
-
-          <div className="mt-10">
-            <Button href="/businesses" variant="outline">
-              ← Back to all businesses
-            </Button>
+        {business.gallery?.length > 0 && (
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {business.gallery.map((img, i) => (
+              <CoverImage key={i} src={img} className="h-40 w-full rounded-xl" />
+            ))}
           </div>
-        </Container>
-      </section>
-    </>
+        )}
+      </Container>
+    </article>
   );
 }

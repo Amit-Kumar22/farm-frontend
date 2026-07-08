@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import { Newspaper } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft, Newspaper } from "lucide-react";
 import Container from "@/components/ui/Container";
 import CoverImage from "@/components/ui/CoverImage";
-import Button from "@/components/ui/Button";
 import { blogApi } from "@/lib/api/blog";
 import { ApiError } from "@/lib/apiClient";
 
@@ -36,7 +36,14 @@ export default async function BlogDetailPage({ params }) {
   return (
     <article className="py-16">
       <Container className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-wide text-gold-dark">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-gold-dark hover:text-forest-deep"
+        >
+          <ArrowLeft size={14} /> All Posts
+        </Link>
+
+        <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-gold-dark">
           {post.category}
         </p>
         <h1 className="mt-2 text-3xl font-extrabold text-forest-deep sm:text-4xl">{post.title}</h1>
@@ -48,17 +55,11 @@ export default async function BlogDetailPage({ params }) {
           src={post.coverImage}
           icon={Newspaper}
           priority
-          className="mt-8 h-72 w-full rounded-2xl"
+          className="mt-8 h-80 w-full rounded-2xl"
         />
 
         <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-ink">
           {post.content}
-        </div>
-
-        <div className="mt-10">
-          <Button href="/blog" variant="outline">
-            ← Back to blog
-          </Button>
         </div>
       </Container>
     </article>

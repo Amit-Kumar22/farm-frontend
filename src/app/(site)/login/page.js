@@ -6,8 +6,9 @@ export const metadata = { title: "Admin Login — MainFarm" };
 
 export default function LoginPage() {
   return (
-    <section className="flex min-h-[70vh] items-center justify-center py-20">
-      <div className="w-full max-w-md rounded-2xl border border-black/5 bg-white p-8 shadow-sm">
+    <section className="relative flex min-h-[75vh] items-center justify-center overflow-hidden py-20">
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-gold/10 blur-3xl" />
+      <div className="relative w-full max-w-md rounded-2xl border border-black/5 bg-white p-8 shadow-lg">
         <div className="mb-6 flex flex-col items-center text-center">
           <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gold text-forest-deep">
             <Sprout size={22} />

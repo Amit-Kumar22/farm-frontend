@@ -1,11 +1,12 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import MainOffset from "@/components/layout/MainOffset";
 
 export default function SiteLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main className="flex-1">{children}</main>
+      <MainOffset>{children}</MainOffset>
       <Footer />
     </>
   );

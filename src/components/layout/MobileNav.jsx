@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import clsx from "clsx";
 import config from "@/config";
 import Button from "../ui/Button";
 
-export default function MobileNav({ isLoggedIn }) {
+export default function MobileNav({ isLoggedIn, transparent }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -14,14 +15,17 @@ export default function MobileNav({ isLoggedIn }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-10 w-10 items-center justify-center rounded-full text-forest-deep"
+        className={clsx(
+          "flex h-10 w-10 items-center justify-center rounded-full transition-colors",
+          transparent && !open ? "text-cream" : "text-forest-deep"
+        )}
         aria-label="Toggle menu"
       >
         {open ? <X size={22} /> : <Menu size={22} />}
       </button>
 
       {open && (
-        <div className="absolute inset-x-0 top-20 border-b border-forest/10 bg-cream px-6 py-6 shadow-sm">
+        <div className="absolute inset-x-0 top-16 border-b border-forest/10 bg-cream px-6 py-6 shadow-md">
           <nav className="flex flex-col gap-4">
             {config.nav.map((item) => (
               <Link
