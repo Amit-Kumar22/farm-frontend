@@ -15,13 +15,13 @@ export default async function BusinessesPage() {
 
   return (
     <>
-      <section className="py-16">
+      <section className="pt-8 pb-10 sm:pt-10 sm:pb-12">
         <Container className="max-w-2xl text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-dark">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-gold-dark">
             What We Do
           </p>
           <h1 className="text-3xl font-extrabold text-forest-deep sm:text-4xl">Our Businesses</h1>
-          <p className="mt-4 text-sm leading-relaxed text-muted">
+          <p className="mt-3 text-sm leading-relaxed text-muted">
             From fish ponds to mushroom houses — explore every side of MainFarm.
           </p>
         </Container>

@@ -1,0 +1,13 @@
+
+> farm-frontend@0.1.0 dev
+> next dev -p 3006
+
+▲ Next.js 16.2.10 (Turbopack)
+- Local:         http://localhost:3006
+- Network:       http://172.20.10.5:3006
+✓ Ready in 372ms
+
+ GET / 200 in 2.5s (next.js: 2.1s, application-code: 431ms)
+ GET / 200 in 147ms (next.js: 9ms, application-code: 138ms)
+[browser] Image with src "/who.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET / 200 in 93ms (next.js: 4ms, application-code: 89ms)
