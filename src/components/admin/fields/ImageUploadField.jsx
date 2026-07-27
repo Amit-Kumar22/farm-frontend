@@ -4,29 +4,34 @@ import { useState } from "react";
 import { UploadCloud, X, Loader2 } from "lucide-react";
 import { uploadFile } from "@/lib/api/uploads";
 import { resolveImageUrl } from "@/lib/imageUrl";
+import { useToast } from "@/context/ToastContext";
 
 export default function ImageUploadField({ value, onChange, type, label = "Image" }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const toast = useToast();
 
   async function handleFileChange(e) {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     // Validate file type
     if (!file.type.startsWith('image/')) {
       setError('Please select an image file');
+      toast.error('Please select an image file');
       e.target.value = "";
       return;
     }
-    
+
     setUploading(true);
     setError("");
     try {
       const res = await uploadFile(file, type);
       onChange(res.data.url);
     } catch (err) {
-      setError(err.message || "Upload failed");
+      const message = err.message || "Upload failed";
+      setError(message);
+      toast.error(message);
     } finally {
       setUploading(false);
       e.target.value = "";
@@ -70,6 +75,7 @@ export default function ImageUploadField({ value, onChange, type, label = "Image
             </button>
           )}
           {error && <p className="text-xs text-red-600">{error}</p>}
+          <p className="text-xs text-muted">Max size: 600 KB</p>
         </div>
       </div>
     </div>

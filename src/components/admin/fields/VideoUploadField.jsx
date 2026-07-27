@@ -4,29 +4,36 @@ import { useState } from "react";
 import { Video, X, Loader2, Play } from "lucide-react";
 import { uploadVideo } from "@/lib/api/uploads";
 import { resolveImageUrl } from "@/lib/imageUrl";
+import { useToast } from "@/context/ToastContext";
 
 export default function VideoUploadField({ value, onChange, type = 'blog-videos', label = "Video" }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const toast = useToast();
 
   async function handleFileChange(e) {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     // Validate file type
     const validTypes = ['video/mp4', 'video/webm', 'video/quicktime', 'video/x-msvideo', 'video/avi'];
     if (!validTypes.includes(file.type)) {
-      setError("Please upload a valid video file (MP4, WebM, MOV, or AVI)");
+      const message = "Please upload a valid video file (MP4, WebM, MOV, or AVI)";
+      setError(message);
+      toast.error(message);
+      e.target.value = "";
       return;
     }
-    
+
     setUploading(true);
     setError("");
     try {
       const res = await uploadVideo(file, type);
       onChange(res.data.url);
     } catch (err) {
-      setError(err.message || "Upload failed");
+      const message = err.message || "Upload failed";
+      setError(message);
+      toast.error(message);
     } finally {
       setUploading(false);
       e.target.value = "";
@@ -82,7 +89,7 @@ export default function VideoUploadField({ value, onChange, type = 'blog-videos'
           {error && <p className="text-xs text-red-600">{error}</p>}
           
           <p className="text-xs text-muted max-w-xs">
-            Supported formats: MP4, WebM, MOV, AVI
+            Supported formats: MP4, WebM, MOV, AVI · Max size: 5 MB
           </p>
         </div>
       </div>
