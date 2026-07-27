@@ -1,7 +1,9 @@
 import Hero from "@/components/home/Hero";
 import FeatureBar from "@/components/home/FeatureBar";
+import OurVision from "@/components/home/OurVision";
 import About from "@/components/home/About";
 import ServicesSection from "@/components/home/ServicesSection";
+import NewsTickerSection from "@/components/home/NewsTickerSection";
 import ChooseField from "@/components/home/ChooseField";
 import Gallery from "@/components/home/Gallery";
 import Testimonials from "@/components/home/Testimonials";
@@ -16,8 +18,10 @@ export default function HomePage() {
     <>
       <Hero />
       <FeatureBar />
+      <OurVision />
       <About />
       <ServicesSection />
+      <NewsTickerSection />
       <ChooseField />
       <Gallery />
       <Testimonials />

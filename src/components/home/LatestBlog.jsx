@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Newspaper } from "lucide-react";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
-import CoverImage from "../ui/CoverImage";
+import BlogCardMedia from "../ui/BlogCardMedia";
 import { blogApi } from "@/lib/api/blog";
 
 export default async function LatestBlog() {
@@ -33,7 +33,12 @@ export default async function LatestBlog() {
                 href={`/blog/${post.slug}`}
                 className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
               >
-                <CoverImage src={post.coverImage} icon={Newspaper} className="h-44 w-full" />
+                <BlogCardMedia 
+                  coverImage={post.coverImage} 
+                  videoUrl={post.videoUrl} 
+                  icon={Newspaper} 
+                  className="h-44 w-full" 
+                />
                 <div className="p-5">
                   <p className="text-xs font-semibold uppercase tracking-wide text-gold-dark">
                     {post.category}

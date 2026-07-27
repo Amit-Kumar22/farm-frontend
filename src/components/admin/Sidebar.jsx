@@ -11,15 +11,17 @@ import {
   Image as ImageIcon,
   Sliders,
   Settings,
+  Megaphone,
 } from "lucide-react";
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/businesses", label: "Businesses", icon: Sprout },
-  { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
+  { href: "/admin/testimonials", label: "Ratings Review", icon: MessageSquareQuote },
   { href: "/admin/blog", label: "Blog Posts", icon: Newspaper },
   { href: "/admin/gallery", label: "Gallery", icon: ImageIcon },
   { href: "/admin/hero-slides", label: "Hero Slides", icon: Sliders },
+  { href: "/admin/tickers", label: "News Ticker", icon: Megaphone },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 

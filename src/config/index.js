@@ -7,8 +7,10 @@ const config = {
   pageSize: 10,
   nav: [
     { label: 'Home', href: '/' },
+    { label: 'Services', href: '/services' },
     { label: 'Businesses', href: '/businesses' },
     { label: 'Blog', href: '/blog' },
+    { label: 'Contact Us', href: '/contact' },
   ],
 };
 

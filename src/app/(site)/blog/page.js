@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Newspaper } from "lucide-react";
 import Container from "@/components/ui/Container";
-import CoverImage from "@/components/ui/CoverImage";
+import BlogCardMedia from "@/components/ui/BlogCardMedia";
 import { blogApi } from "@/lib/api/blog";
 
 export const metadata = { title: "Blog — MainFarm" };
@@ -38,7 +38,12 @@ export default async function BlogPage() {
                   href={`/blog/${post.slug}`}
                   className="group overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <CoverImage src={post.coverImage} icon={Newspaper} className="h-48 w-full" />
+                  <BlogCardMedia 
+                    coverImage={post.coverImage} 
+                    videoUrl={post.videoUrl} 
+                    icon={Newspaper} 
+                    className="h-48 w-full" 
+                  />
                   <div className="p-6">
                     <p className="text-xs font-semibold uppercase tracking-wide text-gold-dark">
                       {post.category}

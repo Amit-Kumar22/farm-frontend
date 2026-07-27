@@ -12,6 +12,14 @@ export default function ImageUploadField({ value, onChange, type, label = "Image
   async function handleFileChange(e) {
     const file = e.target.files?.[0];
     if (!file) return;
+    
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      setError('Please select an image file');
+      e.target.value = "";
+      return;
+    }
+    
     setUploading(true);
     setError("");
     try {

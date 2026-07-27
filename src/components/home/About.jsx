@@ -18,7 +18,7 @@ export default async function About() {
       <Container className="grid items-center gap-12 lg:grid-cols-2">
         <div className="relative h-80 w-full overflow-hidden rounded-2xl bg-gradient-to-br from-forest-light to-forest-deep">
           <Image
-            src="/about.png"
+            src="/who.jpeg"
             alt="About MainFarm"
             fill
             className="object-cover"
@@ -29,13 +29,16 @@ export default async function About() {
         <div>
           <SectionHeading
             eyebrow="Who We Are"
-            title="Currently we are growing and selling organic food"
+            title="Mai farm pride of Dinara"
           />
           <p className="mt-5 text-sm leading-relaxed text-muted">
-            MainFarm runs multiple farming businesses side by side — from fish and dairy to
-            vegetables and mushrooms — all managed with the same commitment to sustainable,
-            professional agriculture.
+            MAI Integrated Farm – Bihar's First Integrated Farming Model with 10 Projects Running Simultaneously.
+            
           </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Mai farm complete training center for farmer to increase economical condition.
+            </p>
+
 
           <div className="mt-8 grid grid-cols-2 gap-6">
             {stats.slice(0, 2).map((stat) => (

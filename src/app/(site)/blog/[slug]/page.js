@@ -5,6 +5,7 @@ import Container from "@/components/ui/Container";
 import CoverImage from "@/components/ui/CoverImage";
 import { blogApi } from "@/lib/api/blog";
 import { ApiError } from "@/lib/apiClient";
+import { resolveImageUrl } from "@/lib/imageUrl";
 
 async function getPost(slug) {
   try {
@@ -33,6 +34,8 @@ export default async function BlogDetailPage({ params }) {
     day: "numeric",
   });
 
+  const videoUrl = post.videoUrl ? resolveImageUrl(post.videoUrl) : null;
+
   return (
     <article className="py-16">
       <Container className="max-w-3xl">
@@ -57,6 +60,21 @@ export default async function BlogDetailPage({ params }) {
           priority
           className="mt-8 h-80 w-full rounded-2xl"
         />
+
+        {videoUrl && (
+          <div className="mt-8">
+            <video 
+              controls 
+              className="w-full rounded-2xl shadow-lg"
+              preload="metadata"
+            >
+              <source src={videoUrl} type="video/mp4" />
+              <source src={videoUrl} type="video/webm" />
+              <source src={videoUrl} type="video/quicktime" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
 
         <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-ink">
           {post.content}

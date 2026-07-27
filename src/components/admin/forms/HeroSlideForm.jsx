@@ -8,6 +8,7 @@ import FormField from "../fields/FormField";
 import { Input, Textarea } from "@/components/ui/Input";
 import { Checkbox } from "../fields/Checkbox";
 import ImageUploadField from "../fields/ImageUploadField";
+import VideoUploadField from "../fields/VideoUploadField";
 import FormActions from "../FormActions";
 import { ApiError } from "@/lib/apiClient";
 import { confirmNavigation } from "@/hooks/useUnsavedChangesWarning";
@@ -24,6 +25,7 @@ const schema = z.object({
 export default function HeroSlideForm({ defaultValues, onSubmit, onCancel }) {
   const [serverError, setServerError] = useState("");
   const [backgroundImage, setBackgroundImage] = useState(defaultValues?.backgroundImage || "");
+  const [backgroundVideo, setBackgroundVideo] = useState(defaultValues?.backgroundVideo || "");
 
   const {
     register,
@@ -44,7 +46,7 @@ export default function HeroSlideForm({ defaultValues, onSubmit, onCancel }) {
   async function submit(values) {
     setServerError("");
     try {
-      await onSubmit({ ...values, backgroundImage });
+      await onSubmit({ ...values, backgroundImage, backgroundVideo });
     } catch (err) {
       setServerError(err instanceof ApiError ? err.message : "Something went wrong");
     }
@@ -74,6 +76,17 @@ export default function HeroSlideForm({ defaultValues, onSubmit, onCancel }) {
         value={backgroundImage}
         onChange={setBackgroundImage}
       />
+
+      <VideoUploadField
+        label="Background Video (Optional)"
+        type="hero-videos"
+        value={backgroundVideo}
+        onChange={setBackgroundVideo}
+      />
+
+      <p className="text-xs text-muted">
+        Note: If both image and video are uploaded, video will be displayed as the background (with image as fallback).
+      </p>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <FormField label="Button Text" error={errors.ctaText?.message}>

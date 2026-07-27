@@ -8,6 +8,7 @@ import FormField from "../fields/FormField";
 import { Input, Textarea } from "@/components/ui/Input";
 import { Checkbox } from "../fields/Checkbox";
 import ImageUploadField from "../fields/ImageUploadField";
+import VideoUploadField from "../fields/VideoUploadField";
 import FormActions from "../FormActions";
 import { ApiError } from "@/lib/apiClient";
 import { confirmNavigation } from "@/hooks/useUnsavedChangesWarning";
@@ -24,6 +25,7 @@ const schema = z.object({
 export default function BlogForm({ defaultValues, onSubmit, onCancel }) {
   const [serverError, setServerError] = useState("");
   const [coverImage, setCoverImage] = useState(defaultValues?.coverImage || "");
+  const [videoUrl, setVideoUrl] = useState(defaultValues?.videoUrl || "");
 
   const {
     register,
@@ -44,7 +46,7 @@ export default function BlogForm({ defaultValues, onSubmit, onCancel }) {
   async function submit(values) {
     setServerError("");
     try {
-      await onSubmit({ ...values, coverImage });
+      await onSubmit({ ...values, coverImage, videoUrl });
     } catch (err) {
       setServerError(err instanceof ApiError ? err.message : "Something went wrong");
     }
@@ -82,6 +84,8 @@ export default function BlogForm({ defaultValues, onSubmit, onCancel }) {
       </FormField>
 
       <ImageUploadField label="Cover Image" type="blog" value={coverImage} onChange={setCoverImage} />
+
+      <VideoUploadField label="Video (Optional)" value={videoUrl} onChange={setVideoUrl} />
 
       <Checkbox label="Published (visible on site)" {...register("isPublished")} />
 
