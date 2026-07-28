@@ -27,7 +27,7 @@ export default async function BusinessesPage() {
         </Container>
       </section>
 
-      <section className="pb-20">
+      <section className="pb-12">
         <Container>
           {businesses.length === 0 ? (
             <p className="text-center text-sm text-muted">No businesses published yet.</p>

@@ -12,7 +12,7 @@ export default async function Testimonials() {
   if (!testimonials.length) return null;
 
   return (
-    <section className="py-20 bg-cream/30">
+    <section className="py-12 bg-cream/30">
       <Container>
         <SectionHeading
           eyebrow="Testimonial"
@@ -21,7 +21,7 @@ export default async function Testimonials() {
           className="mx-auto"
         />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t) => (
             <Card key={t._id} className="relative bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
               {/* Star Rating - Top Left */}

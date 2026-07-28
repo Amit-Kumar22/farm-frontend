@@ -11,7 +11,7 @@ export default async function Gallery() {
   if (!images.length) return null;
 
   return (
-    <section className="py-20">
+    <section className="py-12">
       <Container>
         <SectionHeading eyebrow="Our Gallery" title="A Look Around The Farm" />
         <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">

@@ -37,7 +37,7 @@ export default async function BlogDetailPage({ params }) {
   const videoUrl = post.videoUrl ? resolveImageUrl(post.videoUrl) : null;
 
   return (
-    <article className="py-16">
+    <article className="py-12">
       <Container className="max-w-3xl">
         <Link
           href="/blog"

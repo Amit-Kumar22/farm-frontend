@@ -89,7 +89,7 @@ export default function VideoUploadField({ value, onChange, type = 'blog-videos'
           {error && <p className="text-xs text-red-600">{error}</p>}
           
           <p className="text-xs text-muted max-w-xs">
-            Supported formats: MP4, WebM, MOV, AVI · Max size: 5 MB
+            Supported formats: MP4, WebM, MOV, AVI · Max size: 15 MB
           </p>
         </div>
       </div>

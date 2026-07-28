@@ -34,8 +34,8 @@ export default async function Footer() {
   );
 
   return (
-    <footer className="mt-20 bg-forest-deep text-cream/80">
-      <Container className="py-12">
+    <footer className="mt-8 bg-forest-deep text-cream/80">
+      <Container className="py-10">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           {/* Brand */}
           <div className="lg:col-span-4">

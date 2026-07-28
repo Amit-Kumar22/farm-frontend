@@ -81,7 +81,7 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <section className="bg-gradient-to-b from-cream to-white py-16">
+    <section className="bg-gradient-to-b from-cream to-white py-12">
       <Container>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {services.map((service) => (

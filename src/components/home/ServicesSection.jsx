@@ -9,7 +9,7 @@ export default async function ServicesSection() {
   const businesses = res?.data || [];
 
   return (
-    <section className="bg-forest-deep py-20">
+    <section className="bg-forest-deep py-12">
       <Container>
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading eyebrow="Our Services" title="Best Agriculture Services" light />

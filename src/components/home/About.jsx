@@ -14,8 +14,8 @@ export default async function About() {
   const stats = res?.data?.stats?.length ? res.data.stats : fallbackStats;
 
   return (
-    <section className="py-20">
-      <Container className="grid items-center gap-12 lg:grid-cols-2">
+    <section className="py-12">
+      <Container className="grid items-center gap-10 lg:grid-cols-2">
         <div className="relative h-80 w-full overflow-hidden rounded-2xl bg-gradient-to-br from-forest-light to-forest-deep">
           <Image
             src="/who.jpeg"

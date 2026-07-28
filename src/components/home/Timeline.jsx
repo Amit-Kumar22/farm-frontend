@@ -9,7 +9,7 @@ export default async function Timeline() {
   if (!timeline.length) return null;
 
   return (
-    <section className="py-20">
+    <section className="py-12">
       <Container>
         <SectionHeading
           eyebrow="Our Journey"
@@ -18,7 +18,7 @@ export default async function Timeline() {
           className="mx-auto"
         />
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {timeline.map((item) => (
             <div key={`${item.year}-${item.title}`} className="text-center">
               <p className="text-3xl font-extrabold text-gold-dark">{item.year}</p>

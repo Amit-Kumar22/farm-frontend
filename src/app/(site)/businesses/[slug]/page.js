@@ -31,7 +31,7 @@ export default async function BusinessDetailPage({ params }) {
   const Icon = getBusinessIcon(business.title);
 
   return (
-    <article className="py-16">
+    <article className="py-12">
       <Container className="max-w-3xl">
         <Link
           href="/businesses"

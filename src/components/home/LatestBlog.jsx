@@ -10,7 +10,7 @@ export default async function LatestBlog() {
   const posts = res?.data || [];
 
   return (
-    <section className="py-20">
+    <section className="py-12">
       <Container>
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading eyebrow="Our Blog" title="Latest Posts & Articles" />

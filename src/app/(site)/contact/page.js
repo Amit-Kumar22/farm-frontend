@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-forest-deep via-forest to-forest-light py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-forest-deep via-forest to-forest-light py-14">
         <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-5" />
         <Container className="relative">
           <div className="mx-auto max-w-3xl text-center text-cream">
@@ -35,10 +35,10 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="relative py-20">
+      <section className="relative py-12">
         <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/30 to-white" />
         <Container className="relative">
-          <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
+          <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
             {/* Contact Information - Takes 2 columns */}
             <div className="lg:col-span-2">
               <ContactInfo />
@@ -53,7 +53,7 @@ export default function ContactPage() {
       </section>
 
       {/* Rating/Review Section */}
-      <section className="relative py-20 bg-cream-dark/30">
+      <section className="relative py-12 bg-cream-dark/30">
         <Container>
           <div className="mx-auto max-w-2xl">
             <RatingSubmissionForm />

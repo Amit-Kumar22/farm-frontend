@@ -11,7 +11,7 @@ const items = [
 
 export default function ChooseField() {
   return (
-    <section className="py-20">
+    <section className="py-12">
       <Container className="text-center">
         <SectionHeading
           eyebrow="What We Do"
@@ -20,7 +20,7 @@ export default function ChooseField() {
           className="mx-auto"
         />
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map(({ icon: Icon, title, text }) => (
             <div key={title} className="flex flex-col items-center gap-3">
               <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gold/15 text-gold-dark">

@@ -12,7 +12,7 @@ export default async function BlogPage() {
 
   return (
     <>
-      <section className="py-16">
+      <section className="py-12">
         <Container className="max-w-2xl text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-dark">
             Our Blog
@@ -26,7 +26,7 @@ export default async function BlogPage() {
         </Container>
       </section>
 
-      <section className="pb-20">
+      <section className="pb-12">
         <Container>
           {posts.length === 0 ? (
             <p className="text-center text-sm text-muted">No posts published yet.</p>

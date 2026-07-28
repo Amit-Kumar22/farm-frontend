@@ -12,17 +12,15 @@ export default async function ContactInfo() {
       content: (
         <div className="space-y-1">
           <p className="font-semibold text-forest-deep">MAI Integrated Farm</p>
-          <p>Near R.K International School,</p>
-          <p>R.K Puram, Ward No. 1</p>
-          <p>Dinara Nagar Panchayat,</p>
-          <p>District – Rohtas, Bihar – 802213</p>
+          Dinara, Dinara, Rohtas, Bihar – 802213
+
         </div>
       ),
     },
     {
       icon: Phone,
       title: "Phone Number",
-      content: settings?.phone || "+91 9876543210",
+      content: settings?.phone || " +91 9102674345",
     },
     {
       icon: Mail,

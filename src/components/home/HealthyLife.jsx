@@ -5,8 +5,8 @@ import SectionHeading from "../ui/SectionHeading";
 
 export default function HealthyLife() {
   return (
-    <section className="py-20">
-      <Container className="grid items-center gap-12 lg:grid-cols-2">
+    <section className="py-12">
+      <Container className="grid items-center gap-10 lg:grid-cols-2">
         <div className="relative h-80 w-full overflow-hidden rounded-2xl shadow-lg lg:order-2">
           <Image
             src="/ok1.jpeg"
