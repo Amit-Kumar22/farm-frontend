@@ -1,7 +1,7 @@
 import { apiFetch } from '../apiClient';
 
 export const MAX_IMAGE_SIZE = 600 * 1024; // 600 KB
-export const MAX_VIDEO_SIZE = 5 * 1024 * 1024; // 5 MB
+export const MAX_VIDEO_SIZE = 15 * 1024 * 1024; // 15 MB
 
 export function uploadFile(file, type) {
   // Validate file size on frontend before upload
