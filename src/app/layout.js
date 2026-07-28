@@ -9,7 +9,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: `${config.siteName} — Quality Trust, Direct to the Farm`,
+  title: `${config.siteName} — Quality Trust, Direct to the Farms`,
   description:
     "MainFarm grows and sells fresh fish, dairy, vegetables and mushrooms straight from our own farms.",
 };
